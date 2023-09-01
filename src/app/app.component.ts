@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mon-app';
+  /*title = 'Gestion';
+
+
+  myMessage : string = 'salut mon coeur'
+  fullName: string ='';
+  clickEvent(){
+    console.log("salut olive")
+  };*/
 }
