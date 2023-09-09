@@ -24,8 +24,10 @@
       </div>
     </div>
   </div>
-
   <hr>
+  <div class="alert alert-primary" *ngIf="!!receivedRating">
+    {{receivedRating}}
+  </div>
 
   <div class="row row-cols-1 row-cols-md-3">
     <div class="col mb-4" *ngFor="let hotel of filteredHotels"> <!--on remplace hotels par filterHotels-->
@@ -36,7 +38,12 @@
         <div class="card-body">
           <h5 class="card-title">{{hotel.hotelName | titlecase}}</h5>
           <p class="card-text">{{hotel.description}}</p>
-          <p class="card-text">{{hotel.price | currency : 'EUR':'symbol':'1.2-2':'fr'}}</p>
+          <p class="card-text">{{hotel.price | currency: "EUR":"symbol":"1.2-2":"fr"  }}</p> <!-- | replaceComma-->
+
+          <app-star-rating
+          [rating]="hotel.rating"
+          (starRatingClicked)="receiveRatingClicked($event)">
+          </app-star-rating>
          <!-- <a href="#" class="btn btn-primary">reserver</a>-->
           <span class="badge badge-pill bg-info" *ngIf="showBadge">Nouveau</span>
         </div>
