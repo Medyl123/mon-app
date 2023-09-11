@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IHotel } from '../model/hotel';
+import { HotelListService } from '../service/hotel-list.service';
 
 @Component({
   selector: 'app-hotel-list',
@@ -11,50 +12,26 @@ export class HotelListComponent implements OnInit{
 
   titleH = 'Gestion';
   public titre = 'Liste hotels';
-  public hotels: IHotel[] = [
-
-    {
-      hotelId: 1,
-      hotelName: 'Buea sweet life',
-      description:'Belle vue au bord de la mer',
-      price: 129.5,
-      imageUrl:'assets/img/a.jpg',
-      rating:3.5
-    },
-    {
-      hotelId: 2,
-      hotelName: 'Beach Miami',
-      description:'Belle vue avec piscine',
-      price: 203.5,
-      imageUrl:'assets/img/a1.jpg',
-      rating:5
-    },
-    {
-      hotelId: 3,
-      hotelName: 'Beach in de US',
-      description:'Belle vue et cadre agréable',
-      price: 230.5,
-      imageUrl:'assets/img/a2.jpg',
-      rating:4
-    },
-    {
-      hotelId: 4,
-      hotelName: 'Luxury Miami',
-      description:'Magnifique vue ',
-      price: 120.5,
-      imageUrl:'assets/img/a3.jpg',
-      rating:2.5
-    },
-
-  ];
+  public hotels: IHotel[] = []; // liste d hotels
 
   public showBadge: boolean = false;
   private _hotelFilter = 'mot';
   public filteredHotels:IHotel[]=[]; // on sauvegarde la variable dans un tableau vide
   public receivedRating:string='';
+  public errMsg ?:string;
+
+  constructor(private hotelListService : HotelListService){
+
+  }
   ngOnInit(): void {
-    this.filteredHotels=this.hotels;
-    this.hotelFilter=''
+    this.hotelListService.getHotels().subscribe({
+      next: hotels => {
+        this.hotels = hotels;
+        this.filteredHotels=this.hotels;
+      },
+      error: err => this.errMsg = err
+    }); //après l injection dans le constructeur
+    this.hotelFilter='';
   }
 
   public toggleIsNewBadge():void{

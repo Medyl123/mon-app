@@ -38,7 +38,7 @@
         <div class="card-body">
           <h5 class="card-title">{{hotel.hotelName | titlecase}}</h5>
           <p class="card-text">{{hotel.description}}</p>
-          <p class="card-text">{{hotel.price | currency: "EUR":"symbol":"1.2-2":"fr"  }}</p> <!-- | replaceComma-->
+          <p class="card-text">{{hotel.price | currency: "EUR":"symbol":"1.2-2":"fr" | replaceComma  }}</p> <!-- | replaceComma-->
 
           <app-star-rating
           [rating]="hotel.rating"
