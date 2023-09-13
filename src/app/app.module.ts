@@ -9,22 +9,38 @@ import { registerLocaleData } from '@angular/common';
 import localFr from '@angular/common/locales/fr'
 import { ReplaceComma } from './pipes/pipe-personnalisés/replace-comma.pipe';
 import { StarRatingComponent } from './star-rating/star-rating.component';
-import {HttpClientModule} from '@angular/common/http'
-
+import {HttpClientModule} from '@angular/common/http';
+import { HommeComponent } from './homme/homme.component';
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component'
+import { RouterModule, Routes } from '@angular/router';
+import { HotelDetailGuard } from './guard/hotel-detail.guard';
 registerLocaleData(localFr,'fr')
+
+const appRoutes : Routes =[
+  {path: 'home',component: HommeComponent},
+  {path:'',redirectTo: 'home',pathMatch:'full'},
+  {path:'hotels/:id',component:HotelDetailComponent, canActivate:[HotelDetailGuard]},
+  {path:'hotels',component:HotelListComponent},
+  {path:'**',redirectTo: 'home',pathMatch:'full'}
+
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     HotelListComponent,
     ReplaceComma,
-    StarRatingComponent
+    StarRatingComponent,
+    HommeComponent,
+    HotelDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes,{
+      anchorScrolling:'enabled'})
   ],
   providers: [],
   bootstrap: [AppComponent]

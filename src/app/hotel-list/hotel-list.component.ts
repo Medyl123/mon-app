@@ -10,7 +10,7 @@ import { HotelListService } from '../service/hotel-list.service';
 export class HotelListComponent implements OnInit{
 
 
-  titleH = 'Gestion';
+  //titleH = 'Gestion';
   public titre = 'Liste hotels';
   public hotels: IHotel[] = []; // liste d hotels
 
