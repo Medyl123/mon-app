@@ -10,14 +10,14 @@ export class StarRatingComponent implements OnChanges{
   public starwidth: number = 0.0;
   //nombre d etoile qu aura chaque icone
   @Input() // injecte les element parent au fils
-  public rating: number = 2;
+  public rating!: number | null ; // ajout de | null
   // 125 est le nombre de pixel dans le css et 5 est le nombre d etoile max
   @Output()
   public starRatingClicked: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnChanges(): void {
-    this.starwidth = this.rating * 125 / 5;
-
+    this.starwidth = this.rating! * 125 / 5;
+// ajout de !
   }
 
   public sendRating():void{

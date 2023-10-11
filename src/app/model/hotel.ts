@@ -1,10 +1,10 @@
 export interface IHotel{
-  hotelId: number;
+  id: number | null;
   hotelName:string;
   description:string;
-  price:number;
+  price:number | null;
   imageUrl:string;
-  rating: number
+  rating: number | null;
 }
 /*
 export class Hotel implements IHotel{

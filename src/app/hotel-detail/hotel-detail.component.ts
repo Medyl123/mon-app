@@ -20,7 +20,7 @@ export class HotelDetailComponent implements OnInit {
     //const id : number =Number(this.route.snapshot.paramMap.get('id')) ; on peut aussi utiliser ca
     const id : number =+this.route.snapshot.paramMap.get('id')!;
     this.hotelService.getHotels().subscribe((hotels: IHotel[]) =>{
-      this.hotel = hotels.find((hotel:IHotel) => hotel.hotelId===id)!
+      this.hotel = hotels.find((hotel:IHotel) => hotel.id===id)!
       console.log('hotel: ',this.hotel);
     })
 
